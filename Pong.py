@@ -2,7 +2,6 @@ import pygame
 from random import randint as R_randint
 pygame.font.init()
 
-
 # Game settings;
 FPS = 240
 WIDTH, HEIGHT = 600, 500
@@ -16,7 +15,6 @@ GAME_HAS_STARTED = False
 GAME_BALL_VELOCITY = 1
 GAME_BALL_MOVE_SIDE = ""
 
-
 # Colors;
 RED = (255, 0, 0)
 BLACK = (0,0,0)
@@ -28,10 +26,8 @@ PLAYER_TWO = pygame.Rect(WIDTH-24, (HEIGHT//2)-7, PLAYER_WIDTH, PLAYER_HEIGHT)
 PLAYER_ONE_AIMING = "right"
 PLAYER_TWO_AIMING = "left"
 
-
 # App settings;
 pygame.display.set_caption("Pong")
-
 
 def gameEndsFunc(whoWon):
     comicFont = pygame.font.SysFont('Comic Sans MS', 70)
@@ -42,12 +38,12 @@ def gameEndsFunc(whoWon):
             if event.type == pygame.QUIT:
                 pygame.quit()
 
-
+                
 # The ball moving settings;
 def moveBallF():
     global GAME_BALL_MOVE_SIDE
     # print(GAME_BALL_STATE)
-
+    
     if GAME_BALL_MOVE_SIDE == "left":
         GAME_BALL_STATE["x"]-=GAME_BALL_VELOCITY
         if GAME_BALL_STATE["x"] == PLAYER_ONE.x+PLAYER_WIDTH and GAME_BALL_STATE["y"] < PLAYER_ONE.y+PLAYER_HEIGHT and GAME_BALL_STATE["y"] > PLAYER_ONE.y-PLAYER_HEIGHT:
@@ -117,7 +113,6 @@ def moveBallF():
     if GAME_BALL_STATE["x"] < 0:
         gameEndsFunc("Player-2")
 
-
 def reRenderScreen(hpText, topBorder, fpsText):
     # Refreshing the screen;
     WIN.fill(BLACK)
@@ -152,7 +147,6 @@ def movePlayerTwo(keys_pressed):
     if keys_pressed[pygame.K_DOWN] and PLAYER_TWO.y < HEIGHT-PLAYER_HEIGHT:
         PLAYER_TWO.y += PLAYER_MOVEMENT_VEL
         PLAYER_TWO_AIMING = "down"
-
 
 def main():
     global GAME_HAS_STARTED, GAME_BALL_MOVE_SIDE
